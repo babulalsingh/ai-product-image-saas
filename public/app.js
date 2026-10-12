@@ -38,8 +38,15 @@ if (!configReady) {
     catch (err) { message('authMessage', friendlyAuthError(err)); }
   });
   $('createAccountBtn').addEventListener('click', async () => {
-    try { await createUserWithEmailAndPassword(auth, $('email').value.trim(), $('password').value); message('authMessage', 'Account created. Loading your account…'); }
-    catch (err) { message('authMessage', friendlyAuthError(err)); }
+    try {
+  await createUserWithEmailAndPassword(
+    auth,
+    $('email').value.trim(),
+    $('password').value
+  );
+} catch (err) {
+  message('authMessage', friendlyAuthError(err));
+}
   });
   $('signOutBtn').addEventListener('click', () => signOut(auth));
 }
