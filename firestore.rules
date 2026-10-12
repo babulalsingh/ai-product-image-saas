@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Client apps cannot change subscription plans, credits, or generation records.
+    // Only the trusted Node.js backend using Firebase Admin SDK can access these documents.
+    match /users/{userId} { allow read, write: if false; }
+    match /generationJobs/{jobId} { allow read, write: if false; }
+  }
+}
